@@ -21,6 +21,7 @@ repositories {
 }
 
 dependencies {
+    compile 'org.antlr:antlr4-runtime:4.9.1'
     compileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
@@ -60,5 +61,6 @@ sonarqube {
         property "sonar.java.binaries", "./build/classes/java/main"
         property "sonar.test.binaries", "./build/classes/java/test"
         property "sonar.coverage.jacoco.xmlReportPaths", "./build/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.exclusions", "./src/main/java/dev/sobue/sql/**"
     }
 }
