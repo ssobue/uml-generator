@@ -34,7 +34,12 @@ jar {
 }
 
 pmd {
-    toolVersion = "6.30.0"
+    consoleOutput true
+    dependencies {
+        pmd 'net.sourceforge.pmd:pmd-java:6.30.0'
+        // for fix #2
+        pmd 'com.beust:jcommander:1.78'
+    }
 }
 
 // https://docs.gradle.org/current/userguide/jacoco_plugin.html
