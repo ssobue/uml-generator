@@ -1,0 +1,48 @@
+plugins {
+    id "org.sonarqube" version "3.0"
+    id "com.github.spotbugs" version "4.6.0"
+    id 'java'
+    id 'pmd'
+    id 'jacoco'
+}
+
+group 'dev.sobue'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+// https://docs.gradle.org/current/userguide/jacoco_plugin.html
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.enabled true
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "ssobue_uml-generator"
+        property "sonar.organization", "ssobue"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.sources", "./src/main/java"
+        property "sonar.tests", "./src/test/java"
+        property "sonar.java.binaries", "./build/classes/java/main"
+        property "sonar.test.binaries", "./build/classes/java/test"
+        property "sonar.coverage.jacoco.xmlReportPaths", "./build/reports/jacoco/test/jacocoTestReport.xml"
+    }
+}
