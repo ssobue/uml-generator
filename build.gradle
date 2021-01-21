@@ -33,6 +33,10 @@ jar {
     }
 }
 
+pmd {
+    toolVersion = "6.30.0"
+}
+
 // https://docs.gradle.org/current/userguide/jacoco_plugin.html
 jacocoTestReport {
     dependsOn test
